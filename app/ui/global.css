@@ -1,3 +1,5 @@
+/* CSS를 추가하지 않았는데 어디에서 적용되는거지?? */
+/* 아래의 @tailwind directives에 의해서 적용되는 것 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
