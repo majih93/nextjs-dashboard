@@ -2,6 +2,9 @@
 // It describes the shape of the data, and what data type each property should accept.
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
+// TODO - Prisma가 뭔지?
+// SwiftUI의 Model을 만드는 것과 비슷한 느낌이다. 왜 이렇게 하는지 이해가 확 되고 확실히 이것저것 겪어봐야하는 이유가 이런건가 싶기도 하다.
+
 export type User = {
   id: string;
   name: string;
