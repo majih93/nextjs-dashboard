@@ -60,5 +60,3 @@ Next.js 는 `next/font`모듈을 사용하면 폰트를 최적화한다. 빌드 
 - 사용자의 viewport 밖에 위치한 이미지를 lazy loading 처리
 
 `next/image` 컴포넌트를 활용해서 자동으로 이미지 최적화가 되도록 처리할 수 있음.
-
-`<Image>` 컴포넌트는
