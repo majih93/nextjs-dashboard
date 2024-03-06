@@ -1,5 +1,6 @@
 // import global css on the top level component
 import '@/app/ui/global.css';
+import { inter } from '@/app/ui/fonts';
 
 export default function RootLayout({
   children,
@@ -8,7 +9,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      {/* antialiased - Tailwind class which smooths out the font */}
+      <body className={`${inter.className} antialiased`}>{children}</body>
+      {/* <body>{children}</body> */}
     </html>
   );
 }
