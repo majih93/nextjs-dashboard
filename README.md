@@ -60,3 +60,48 @@ Next.js 는 `next/font`모듈을 사용하면 폰트를 최적화한다. 빌드 
 - 사용자의 viewport 밖에 위치한 이미지를 lazy loading 처리
 
 `next/image` 컴포넌트를 활용해서 자동으로 이미지 최적화가 되도록 처리할 수 있음.
+
+## Creating Layouts and Pages
+
+[4장](https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages)
+
+### 학습목표
+
+- Create `dashboard` routes using file-system routing.
+- Understand the role of folders and files when creating new route segments
+- Create a nested layout that can be shared between muliple dashboard pages
+- Understand what colocation, partial rendering, and the root layout are.
+
+### Nested routing
+
+Next.js는 중첩 routing을 위해서 폴더를 사용한다. 각 폴더는 한 route 계층을 의미한다. 그리고 한 route계층은 하나의 URL계층과 상호연결됨.
+
+```markdown
+-app
+|\_dashboard
+|\_\_invoices
+
+`acme.com/dashboard/invoces` 계정으로 연결
+```
+
+각각의 route에 `layout.tsx`파일과 `page.tsx`파일을 사용해서 원하는 UI를 구현할 수 있다.
+
+`page.tsx`은 특정 경로가 접근 가능토록 하기 위한 React 컴포넌트를 export하는 파일이다.
+
+`/app/dashboard/page.tsx`파일은 `/dashboard` 경로와 연결됨.
+
+**layout.tsx**
+
+`layout.tsx`파일에 import하는 컴포넌트는 다 layout의 일부에 포함된다.
+
+`<Layout />` 컴포넌트는 하나의 페이지이거나, layout일 수 있는 `children` prop을 받는다.
+
+이런 구조의 장점 중 하나는 page 컴포넌트만 리렌더링 되고 layout은 리렌더링되지 않는다는 점이다. (partial rerendering)
+
+partial rerendering이 왜 좋은지? (gemini에게 물어봄)
+
+- 퍼포먼스 향상: 필요한 부분만 리렌더링해서 퍼포먼스 향상, 특히 느린 디바이스나 네트워크 환경에서 굳
+- UX향상: 더 빠른 페이지 이동 업데이트로 인해 smoother user experience. 특히 SPA 구조 앱에서는 끊어지지 않는 웹 사용 경험을 위해서 매우 중요한 요소
+- 서버 부하 감소: 필요한 부분만 업데이트해서 서버에 대한 불필요한 요청 감소 -> 부하 감소 효과.
+
+Root layout에 추가된 UI는 어플리케이션의 모든 페이지에 적용된다.
