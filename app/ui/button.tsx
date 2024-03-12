@@ -4,6 +4,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
+// 온프레스 어딨음
 export function Button({ children, className, ...rest }: ButtonProps) {
   return (
     <button
