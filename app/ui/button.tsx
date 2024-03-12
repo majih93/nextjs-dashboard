@@ -4,6 +4,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
+// where is the onpress supposed to be
+
 export function Button({ children, className, ...rest }: ButtonProps) {
   return (
     <button
