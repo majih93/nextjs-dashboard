@@ -28,8 +28,6 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 - CSS Modules
   - Provide a way to make CSS classes locally scoped to components by default, reducing the risk of styling conflicts.
   - CSS Modules create unique class names for each component, so you don't have to worry about style collisions.
-- CSS-in-JS
-- Sass
 
 ## Optimizing fonts and images
 
