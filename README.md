@@ -14,7 +14,7 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 
 - `public`: contains all static assets like images
 
-- and in the main branch, the same line with modified with something else
+- lets say I added something here in the feature1 branch
 
 - `scripts`: contains a seeding script that you'll use to populate your database in a later chapter.
 
