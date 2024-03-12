@@ -111,3 +111,5 @@ partial rerendering이 왜 좋은지? (gemini에게 물어봄)
 - 서버 부하 감소: 필요한 부분만 업데이트해서 서버에 대한 불필요한 요청 감소 -> 부하 감소 효과.
 
 Root layout에 추가된 UI는 어플리케이션의 모든 페이지에 적용된다.
+
+## changes in fix branch
