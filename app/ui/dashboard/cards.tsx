@@ -30,6 +30,7 @@ export default async function CardWrapper() {
   );
 }
 
+// TODO - is the type one of the four string values?
 export function Card({
   title,
   value,
