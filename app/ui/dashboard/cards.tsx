@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
 
+// 대응되는 구조를 가진 객체를 Map이라고하는구나
 const iconMap = {
   collected: BanknotesIcon,
   customers: UserGroupIcon,
