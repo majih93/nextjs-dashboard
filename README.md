@@ -24,12 +24,16 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 
 `Next.js`에서는 root layout에 해당된다.
 
+- and some other for new Commmit
+
 - Tailwind
 - CSS Modules
   - Provide a way to make CSS classes locally scoped to components by default, reducing the risk of styling conflicts.
   - CSS Modules create unique class names for each component, so you don't have to worry about style collisions.
 - CSS-in-JS
 - Sass
+
+- and some other for new Commmit
 
 ## Optimizing fonts and images
 
