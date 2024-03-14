@@ -112,4 +112,33 @@ partial rerendering이 왜 좋은지? (gemini에게 물어봄)
 
 Root layout에 추가된 UI는 어플리케이션의 모든 페이지에 적용된다.
 
-## changes in fix branch
+## Navigating Between Pages
+
+- `next/link` 컴포넌트 사용법
+- `usePathname()` hook 으로 active link 보여주기
+- Next.js 에서 navigation이 동작하는 방식
+
+### 왜 navigation을 최적화 해야 하는가?
+
+보통 페이지로 이동할 때, `<a>` 요소를 사용한다.
+
+하지만 `<a>` 태그를 활용해서 페이지 간 navigate하게 되면, 매번 `full page refresh`가 발생한다.
+-> 실제로 해보면, a태그를 활용하면 페이지가 refresh되면서 focus가 사라지는데 Link 태그를 활용하면 focus가 유지된다.
+
+### <Link> 컴포넌트
+
+Nextjs에서는 `<Link>` 컴포넌트를 사용해서 페이지 간 이동을 구현할 수 있다.
+
+`<Link>`컴포넌트는 JavaScript를 활용한 client-side navigation이 가능토록 해준다.
+
+### 자동으로 code-splitting 과 prefetching을 수행한다.
+
+navigation 경험을 개선하기 위해서, Next.js는 자동으로 어플리케이션을 route segment로 code split을 실행한다.
+
+전통적인 React SPA는 최초 로딩 시 모든 어플리케이션 코드를 브라우저에 로드하는 거에 대비해서 다르게 동작한다.
+
+Route에 따라서 페이지를 split한다는 것은 페이지들이 각각 고립된다는 것을 의미한다. 하나의 페이지가 에러를 발생시켜도 나머지 페이지들은 정상적으로 동작한다.
+
+그리고 Link 컴포넌트가 viewport에 등장할 때마다 Next.js는 자동으로 해당 링크에 연결되어 있는 페이지의 코드를 백그라운드에서 prefetch한다.
+
+그래서 사용자가 링크를 누르는 시점에 이미 코드가 로드 되어 있어서 거의 바로 페이지가 나타나는 것처럼 보인다.
