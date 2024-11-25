@@ -1,5 +1,5 @@
-## Next.js App Router Course - Starter
+# Next.js 공식문서 튜토리얼 따라해보기
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+# 2장. CSS Styling
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+Root컴포넌트인 `app/layout.tsx`에 global.css 파일을 import해서 적용되도록 하면 페이지 전체적으로 스타일이 적용됨.
