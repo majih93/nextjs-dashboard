@@ -68,3 +68,68 @@ Next.js가 제공해주는 최적화없이 이미지를 사용하는 경우, 아
 - 작은 디바이스에서 viewport에 맞지 않는 이미지 resizing
 - default로 lazy loading됨 이미지가 (viewport에 들어왔을 때 이미지가 load된다.)
 - 브라우저에서 지원되는 경우 `WebP`나 `AVIF`와 같은 최신 포맷으로 제공
+
+# 4장. Creating Layouts and Pages
+
+- 파일 구조 기반 routing을 사용해서 `dashboard` route 생성
+- route segment를 생성하는데 폴더와 파일의 역할 이해
+- 여러 dashboard 페이지 간 공유할 수 있는 중첩된 layout 생성
+- colocation, partialk rendering, root layout에 대한 이해
+
+**새로운 페이지 만들기**
+
+Next.js는 폴더를 사용해서 중첩된 경로 구조를 만든다.
+
+각 폴더는 하나의 URL segment와 연결되는 `route segment` 생성한다.
+
+app - Root segment
+app/dashboard - Segment
+app/dashboard/invoices - leaf segment
+
+각각 route 별로 `layout.tsx` 파일과 `page.tsx`파일을 사용해서 UI를 만들면 된다.
+
+`page.tsx` - Next.js에서 route에 접근하기 위해서 필요한 특별한 파일(이름이 page로 고정이라는 점)
+
+`/dashboard`라는 경로를 만들고자 한다면 app/dashboard 폴더에 `page.tsx` 파일을 하나 만들면 된다.
+
+폴더를 사용해서 route segment를 새롭게 만들고, page.tsx 파일을 이용해서 해당 페이지의 최상위 컴포넌트 생성
+
+**layout.tsx - 하나의 route에서 여러 페이지들이 공유하는 UI구조를 만들 수 있는 컴포넌트**
+
+별도로 컴포넌트 구조를 잡아줄 필요가 없이, 해당 route의 페이지들이 자동으로 layout으로 감싸지는 구조가 된다.
+
+Next.js에서 layout 컴포넌트를 사용해서 공통 UI를 만들면, 각 페이지의 page.tsx에 해당하는 부분들만 rendering되고 layout에 해당되는, 모든 페이지에서 동일하게 적용되는 UI는 navigation이 되어도 유지된다.(partial rendering)
+
+**root layout**
+
+app 폴더의 최상위 디렉토리에 위치한 layout.tsx 파일을 root layout이라고 하며, 무조건 있어야 하는 파일이다.
+
+이 컴포넌트를 통해서 `html`태그와 `body`태그를 관리하고 metadata를 처리할 수 있음.
+
+# 5장. Navigating Between Pages
+
+- `next/link` 컴포넌트를 사용하는 방법
+- `usePathname()` hook을 이용해서 현재 위치한 페이지의 link를 다루는 방법
+- Next.js navigation
+
+**<Link> 컴포넌트**
+
+Next.js에서 제공하는 `<Link/>` 컴포넌트를 활용해서 클라이언트 사이드 navigation을 구현할 수 있음.
+
+<a>태그를 <Link/>로 변경하면, 전체 페이지를 refresh하지 않으면서 페이지간 이동이 가능해진다.
+
+변경되는 부분은 서버에서 렌더링 되긴 하지만, full page refresh가 발생하지는 않음.왜 그런건지?
+
+확인해보고 싶어서 <Link/>를 썼을 때 리렌더링되지 않아야하는 부분에 해당되는 `layout.tsx`파일에 useEffect를 하나 선언해서 테스트해보니, a태그를 사용하면 계속 리렌더링되는 반면 Link컴포넌트를 사용하면 dashboard내에서 여러 페이지간 이동해도 해당 컴포넌트는 다시 렌더링되지 않는 것을 확인하였음.
+
+이게 어떻게 가능한걸까?
+
+Next.js는 route segment를 기준으로 자동으로 code splitting을 적용함. 무슨 뜻인고 하니, 해당 페이지에 필요한 JavaScript 파일만 로딩해서 처리한다는 뜻이다. (React와 같은 일반적인 SPA는 초기에 모든 코드를 로딩한다.)
+
+이를 통해서 각 페이지는 독립적으로 동작하며, Link 컴포넌트가 viewport에 존재하는 경우 Next.js는 자동으로 연결된 경로의 코드를 백그라운드에서 fetch한다. 이를 통해서 유저가 링크를 클릭하는 경우 거의 바로 페이지가 표시되는 느낌으로 사용성을 제공할 수 있음.
+
+**usePathname()으로 active link 표시하기**
+
+`usePathname()` hook으로 URL을 기준으로 현재 유저가 위치한 경로를 알아낼 수 있음.
+
+hook을 사용하려면 'use client'를 파일 최상단에 명시해줘야 한다.
